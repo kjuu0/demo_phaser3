@@ -1,14 +1,30 @@
-var express = require('express'); //express module
-var app = express(); //create instance of express
-var server = require('http').Server(app); //allows server to handle http
+const app = require('express')(); //requires express module and creates instance of express
+const server = require('http').Server(app); //allows server to handle http
+const io = require('socket.io')(server);
+const next = require('next');
 
-app.use(express.static(__dirname + '/public')); //tells server where to find static files
+const dev = process.env.NODE_ENV != 'production';
+const nextApp = next({dev});
+const nextHandler = nextApp.getRequestHandler();
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + 'index.html'); //serves index.html as root page
-});
+let port = 3000;
 
-server.listen(8081, () => {
-    console.log(`listening on ${server.address().port}`); //tells server to listen on port 8081
-});
+io.on('connect', socket => {
+    socket.emit('now', {
+        message: 'zeit' //sends message to clinet
+    })
+})
 
+nextApp.prepare().then(() => {
+    app.get('*', (req, res) => {
+        return nextHandler(req, res)
+    })
+
+    server.listen(port, (err) => {
+        if(err) {
+            throw err
+        } else {
+            console.log(`> Ready on http://localhost:${port}`);
+        }
+    })
+})
