@@ -23,7 +23,7 @@ nextApp.prepare().then(() => {
 })*/
 
 const PORT = process.env.PORT || 3000;
-const server = require('express')();
+const server = require('http').Server(require('express')());
 const um = process.env.NODE_ENV == 'production'
 const next = require('next');
 const nextApp = next({um});
