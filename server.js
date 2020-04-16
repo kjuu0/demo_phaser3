@@ -11,6 +11,16 @@ let port = 3000;
 
 let players = {}; //stores all players in an object
 
+let star = {
+    x: Math.floor(Math.random() * 700) + 50,
+    y: Math.floor(Math.random() * 500) + 50
+}
+
+let scores = {
+    blue: 0,
+    red: 0
+}
+
 io.on('connect', socket => {
     console.log('Connected');
     players[socket.id] = { //on player connect, new player object is created w/ rotation, x-y coords, id, and a random team
@@ -25,6 +35,8 @@ io.on('connect', socket => {
     })
     //Event called currentPlayers passes players object to the new players so their client can render them
     socket.emit('currentPlayers', players); 
+    socket.emit('starLocation', star);
+    socket.emit('scoreUpdate', scores);
     socket.broadcast.emit('newPlayer', players[socket.id]); //passing new player's object to all other players so they can render
     socket.on('disconnect', function() {
         console.log('Disconnect')
@@ -36,6 +48,17 @@ io.on('connect', socket => {
         players[socket.id].y = movementData.y;
         players[socket.id].rotation = movementData.rotation;
         socket.broadcast.emit('playerMoved', players[socket.id]); //tells the clients to update their player positions
+    })
+    socket.on('starCollected', function() {
+        if(players[socket.id].team === 'red') {
+            scores.red += 10;
+        } else {
+            scores.blue += 10;
+        }
+        star.x = Math.floor(Math.random() * 700) + 50;
+        star.y = Math.floor(Math.random() * 500) + 50;
+        io.emit('starLocation', star); //creates a new star
+        io.emit('scoreUpdate', scores); //updates score
     })
 })
 
