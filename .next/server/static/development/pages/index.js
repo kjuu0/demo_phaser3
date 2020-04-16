@@ -135,6 +135,8 @@ class Test extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx("div", null, __jsx("h1", null, this.state.hello), __jsx("script", {
       src: "//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"
     }), __jsx("script", {
+      src: "/socket.io/socket.io.js"
+    }), __jsx("script", {
       type: "text/javascript",
       src: "/static/game.js"
     }));

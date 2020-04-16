@@ -25,6 +25,7 @@ class Test extends Component {
             <div>
                 <h1>{this.state.hello}</h1>
                 <script src="//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"></script>
+                <script src="/socket.io/socket.io.js"></script>
                 <script type='text/javascript' src='/static/game.js'></script>
             </div>
         )
