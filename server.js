@@ -9,13 +9,26 @@ const nextHandler = nextApp.getRequestHandler();
 
 let port = 3000;
 
+let players = {}; //stores all players
+
 io.on('connect', socket => {
     console.log('Connected');
+    player[socket.id] = { //on player connect, new player object is created w/ rotation, x-y coords, id, and a random team
+        rotation = 0,
+        x: Math.floor(Math.random() * 700) + 50,
+        y: Math.floor(Math.random() * 500) + 50,
+        playerId: socket.id,
+        team: (Math.floor(Math.random() * 2) == 0) ? 'red' : 'blue'
+    };
     socket.emit('now', {
         message: 'zeit' //sends message to client
     })
+    socket.emit('currentPlayers', players); //passing players object to the new players so their client can render them
+    socket.broadcast.emit('newPlayer', players[socket.id]); //passing new player's object to all other players so they can render
     socket.on('disconnect', function() {
         console.log('Disconnect')
+        delete players[socket.id]; //removes the player
+        io.emit('disconnect', socket.id); //tells all other clients to remove the player
     })
 })
 
