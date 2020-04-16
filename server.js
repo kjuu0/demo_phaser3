@@ -23,13 +23,14 @@ nextApp.prepare().then(() => {
 })*/
 
 const PORT = process.env.PORT || 3000;
-const server = require('http').Server(require('express')());
+const app = require('express')();
+const server = require('http').Server(app);
 const um = process.env.NODE_ENV == 'production'
 const next = require('next');
 const nextApp = next({um});
 const nextHandler = nextApp.getRequestHandler();
 nextApp.prepare().then(() => {
-    server.use(server.get('*', (req, res) => {
+    server.use(app.get('*', (req, res) => {
         return nextHandler(req, res)
     }))
     server.listen(PORT, () => console.log(`Listening on ${PORT}`))
