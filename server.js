@@ -30,9 +30,9 @@ const next = require('next');
 const nextApp = next({um});
 const nextHandler = nextApp.getRequestHandler();
 nextApp.prepare().then(() => {
-    app.use(app.get('*', (req, res) => {
+    app.get('*', (req, res) => {
         return nextHandler(req, res)
-    }))
+    })
     server.listen(PORT, () => console.log(`Listening on ${PORT}`))
 })
 
