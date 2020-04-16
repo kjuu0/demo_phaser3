@@ -7,7 +7,7 @@ class Test extends Component {
         super(props)
         
         this.state = {
-            hello: 'hi'
+            hello: 'Star Collector'
         }
     }
 /*
