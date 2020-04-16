@@ -50,10 +50,26 @@ function create() {
             }
         })
     })
+    this.cursors = this.input.keyboard.createCursorKeys(); //cursors object has 4 main Key objects
 }
 
 function update() {
-
+    if(this.ship) {
+        if(this.cursors.left.isDown) {
+            this.ship.setAngularVelocity(-150);
+        } else if(this.cursors.right.isDown) {
+            this.ship.setAngularVelocity(150);
+        } else {
+            this.ship.setAngularVelocity(0);
+        }
+        if(this.cursors.up.isDown) {
+            this.physics.velocityFromRotation(this.ship.rotation + 1.5, -100, this.ship.body.acceleration);
+        } else {
+            this.ship.setAcceleration(0);
+        }
+    
+        this.physics.world.wrap(this.ship, 5); //ships that go off the side appear on the other side
+    }
 }
 
 function addPlayer(self, playerInfo) {
