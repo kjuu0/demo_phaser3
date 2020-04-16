@@ -4547,7 +4547,7 @@ if (typeof WebSocket !== 'undefined') {
 
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 2);
+    NodeWebSocket = __webpack_require__(/*! ws */ 3);
   } catch (e) { }
 }
 
@@ -10841,7 +10841,7 @@ var Test = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fbrianlqiu%2Fdemo_phaser3%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -10853,7 +10853,7 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absol
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/
@@ -10875,5 +10875,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

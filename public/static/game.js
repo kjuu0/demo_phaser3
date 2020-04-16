@@ -51,6 +51,14 @@ function create() {
         })
     })
     this.cursors = this.input.keyboard.createCursorKeys(); //cursors object has 4 main Key objects
+    this.socket.on('playerMoved', function(playerInfo) {
+        self.otherPlayers.getChildren().forEach(function(otherPlayer) {
+            if(playerInfo.playerId === otherPlayer.playerId) {
+                otherPlayer.setRotation(playerInfo.rotation);
+                otherPlayer.setPosition(playerInfo.x, playerInfo.y);
+            }
+        })
+    })
 }
 
 function update() {
@@ -69,6 +77,24 @@ function update() {
         }
     
         this.physics.world.wrap(this.ship, 5); //ships that go off the side appear on the other side
+
+        let x = this.ship.x;
+        let y = this.ship.y;
+        let r = this.ship.rotation;
+        if(this.ship.oldPosition && (x !== this.ship.oldPosition.x || y !== this.ship.oldPosition.y 
+            || r !== this.ship.oldPosition.rotation)) { //If an oldPosition exists and the current ship has changed state
+            this.socket.emit('playerMovement', { //Emits an event called playerMovement containing info about the current ship state
+                x: this.ship.x,
+                y: this.ship.y,
+                rotation: this.ship.rotation
+            })
+        }
+
+        this.ship.oldPosition = { //Makes the current ship position an old one
+            x: this.ship.x,
+            y: this.ship.y,
+            rotation: this.ship.rotation
+        }
     }
 }
 

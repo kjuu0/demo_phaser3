@@ -31,6 +31,12 @@ io.on('connect', socket => {
         delete players[socket.id]; //removes the player
         io.emit('disconnect', socket.id); //tells all other clients to remove the player
     })
+    socket.on('playerMovement', function(movementData) { //updates the player data in the server
+        players[socket.id].x = movementData.x;
+        players[socket.id].y = movementData.y;
+        players[socket.id].rotation = movementData.rotation;
+        socket.broadcast.emit('playerMoved', players[socket.id]); //tells the clients to update their player positions
+    })
 })
 
 nextApp.prepare().then(() => {
