@@ -3,11 +3,24 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const next = require('next');
 
-const dev = process.env.NODE_ENV != 'production';
-const nextApp = next({dev});
+const nextApp = next(process.env.NODE_ENV);
 const nextHandler = nextApp.getRequestHandler();
 
-let port = process.env.PORT;
+let port = process.env.PORT || 3000;
+
+nextApp.prepare().then(() => {
+    app.get('*', (req, res) => {
+        return nextHandler(req, res)
+    })
+
+    server.listen(port, (err) => {
+        if(err) {
+            throw err
+        } else {
+            console.log(`> Ready on http://localhost:${port}`);
+        }
+    })
+})
 
 let players = {}; //stores all players in an object
 
@@ -59,19 +72,5 @@ io.on('connect', socket => {
         star.y = Math.floor(Math.random() * 500) + 50;
         io.emit('starLocation', star); //creates a new star
         io.emit('scoreUpdate', scores); //updates score
-    })
-})
-
-nextApp.prepare().then(() => {
-    app.get('*', (req, res) => {
-        return nextHandler(req, res)
-    })
-
-    server.listen(port, (err) => {
-        if(err) {
-            throw err
-        } else {
-            console.log(`> Ready on http://localhost:${port}`);
-        }
     })
 })
