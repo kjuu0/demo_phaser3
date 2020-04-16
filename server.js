@@ -1,12 +1,13 @@
-const PORT = process.env.PORT;
-const app = require('express'); //requires express module and creates instance of express
-const server = express().listen(PORT, () => console.log(`Listening on ${PORT}`));
+const app = require('express')(); //requires express module and creates instance of express
+const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const next = require('next');
 
 const dev = process.env.NODE_ENV != 'production';
 const nextApp = next({dev});
 const nextHandler = nextApp.getRequestHandler();
+
+let port = process.env.PORT;
 
 let players = {}; //stores all players in an object
 
