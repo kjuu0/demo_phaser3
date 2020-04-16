@@ -1,0 +1,25 @@
+{
+  "name": "demo_phaser3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianlqiu/demo_phaser3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianlqiu/demo_phaser3/issues"
+  },
+  "homepage": "https://github.com/brianlqiu/demo_phaser3#readme"
+}
