@@ -13,12 +13,10 @@
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {},
-  "engines": {
-    "node": "13.1.x"
-  },
   "scripts": {
     "dev": "node server.js",
-    "build": "next build && node server.js"
+    "build": "next build && node server.js",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",

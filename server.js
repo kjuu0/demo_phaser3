@@ -22,21 +22,25 @@ nextApp.prepare().then(() => {
     })
 })*/
 
-const PORT = process.env.PORT || 3000;
 const app = require('express')();
 const server = require('http').Server(app);
-const um = process.env.NODE_ENV == 'production'
+const io = require('socket.io')(server)
 const next = require('next');
-const nextApp = next({um});
+
+const dev = process.env.NODE_ENV
+const nextApp = next({dev});
 const nextHandler = nextApp.getRequestHandler();
+
 nextApp.prepare().then(() => {
     app.get('*', (req, res) => {
         return nextHandler(req, res)
     })
-    server.listen(PORT, () => console.log(`Listening on ${PORT}`))
+    
+    server.listen(process.env.PORT, (err) => {
+        if (err) throw err
+        console.log(`> Ready on {process.env.PORT}`)
+    })
 })
-
-const io = require('socket.io')(server)
 
 
 let players = {}; //stores all players in an object
