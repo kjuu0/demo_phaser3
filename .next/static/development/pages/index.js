@@ -4547,7 +4547,7 @@ if (typeof WebSocket !== 'undefined') {
 
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(/*! ws */ 3);
+    NodeWebSocket = __webpack_require__(/*! ws */ 2);
   } catch (e) { }
 }
 
@@ -10804,24 +10804,23 @@ var Test = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      hello: ''
+      hello: 'hi'
     };
     return _this;
   }
+  /*
+      componentDidMount() {
+          this.socket = io();
+          this.socket.on('now', data => {
+              this.setState({
+                  hello: data.message
+              })
+          });
+      }
+    */
+
 
   Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Test, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_6___default()();
-      this.socket.on('now', function (data) {
-        _this2.setState({
-          hello: data.message
-        });
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       return __jsx("div", null, __jsx("h1", null, this.state.hello), __jsx("script", {
@@ -10842,7 +10841,7 @@ var Test = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fbrianlqiu%2Fdemo_phaser3%2Fpages%2Findex.js ***!
   \**********************************************************************************************************************/
@@ -10854,7 +10853,7 @@ module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absol
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /*!********************!*\
   !*** ws (ignored) ***!
   \********************/
@@ -10876,5 +10875,5 @@ module.exports = dll_2adc2403d89adc16ead0;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 const app = require('express')(); //requires express module and creates instance of express
 const server = require('http').Server(app); //allows server to handle http
-const io = require('socket.io').listen(server);
+const io = require('socket.io')(server);
 const next = require('next');
 
 const dev = process.env.NODE_ENV != 'production';

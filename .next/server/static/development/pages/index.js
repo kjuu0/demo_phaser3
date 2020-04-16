@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,18 +118,20 @@ class Test extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   constructor(props) {
     super(props);
     this.state = {
-      hello: ''
+      hello: 'hi'
     };
   }
+  /*
+      componentDidMount() {
+          this.socket = io();
+          this.socket.on('now', data => {
+              this.setState({
+                  hello: data.message
+              })
+          });
+      }
+    */
 
-  componentDidMount() {
-    this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()();
-    this.socket.on('now', data => {
-      this.setState({
-        hello: data.message
-      });
-    });
-  }
 
   render() {
     return __jsx("div", null, __jsx("h1", null, this.state.hello), __jsx("script", {
@@ -148,7 +150,7 @@ class Test extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

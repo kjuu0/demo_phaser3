@@ -7,10 +7,10 @@ class Test extends Component {
         super(props)
         
         this.state = {
-            hello: ''
+            hello: 'hi'
         }
     }
-
+/*
     componentDidMount() {
         this.socket = io();
         this.socket.on('now', data => {
@@ -19,7 +19,7 @@ class Test extends Component {
             })
         });
     }
-    
+  */  
     render() {
         return (
             <div>
