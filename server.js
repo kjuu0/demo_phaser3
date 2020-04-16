@@ -10,8 +10,12 @@ const nextHandler = nextApp.getRequestHandler();
 let port = 3000;
 
 io.on('connect', socket => {
+    console.log('Connected');
     socket.emit('now', {
-        message: 'zeit' //sends message to clinet
+        message: 'zeit' //sends message to client
+    })
+    socket.on('disconnect', function() {
+        console.log('Disconnect')
     })
 })
 
