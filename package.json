@@ -17,7 +17,9 @@
     "node": "13.1.x"
   },
   "scripts": {
-    "start": "node server.js"
+    "build": "next build",
+    "heroku-postbuild": "npm run build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
