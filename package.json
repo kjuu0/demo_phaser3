@@ -13,12 +13,11 @@
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {},
+  "engines": {
+    "node": "13.1.x"
+  },
   "scripts": {
-    "dev": "next",
-    "build": "node server.js && next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
