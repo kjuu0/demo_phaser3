@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const app = require('express'); //requires express module and creates instance of express
 const server = express().listen(PORT, () => console.log(`Listening on ${PORT}`));
 const io = require('socket.io')(server);
