@@ -10824,7 +10824,12 @@ var Test = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return __jsx("h1", null, this.state.hello);
+      return __jsx("div", null, __jsx("h1", null, this.state.hello), __jsx("script", {
+        src: "//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"
+      }), __jsx("script", {
+        type: "text/javascript",
+        src: "/static/game.js"
+      }));
     }
   }]);
 

@@ -21,7 +21,13 @@ class Test extends Component {
     }
     
     render() {
-        return <h1>{this.state.hello}</h1>
+        return (
+            <div>
+                <h1>{this.state.hello}</h1>
+                <script src="//cdn.jsdelivr.net/npm/phaser@3.22.0/dist/phaser.js"></script>
+                <script type='text/javascript' src='/static/game.js'></script>
+            </div>
+        )
     }
 }
 
