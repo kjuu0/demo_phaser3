@@ -1,4 +1,4 @@
-const app = require('express')(); //requires express module and creates instance of express
+/*const app = require('express')(); //requires express module and creates instance of express
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const next = require('next');
@@ -20,7 +20,23 @@ nextApp.prepare().then(() => {
             console.log(`> Ready on http://localhost:${port}`);
         }
     })
+})*/
+
+const PORT = process.env.PORT || 3000;
+const server = require('express')();
+const um = process.env.NODE_ENV == 'production'
+const next = require('next');
+const nextApp = next({um});
+const nextHandler = nextApp.getRequestHandler();
+nextApp.prepare().then(() => {
+    server.use(server.get('*', (req, res) => {
+        return nextHandler(req, res)
+    }))
+    server.listen(PORT, () => console.log(`Listening on ${PORT}`))
 })
+
+const io = require('socket.io')(server)
+
 
 let players = {}; //stores all players in an object
 
